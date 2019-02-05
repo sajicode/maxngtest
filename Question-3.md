@@ -1,7 +1,7 @@
 The JS file below has a few errors, can you indentify and fix them?
 
 ```js
-const express = require(express);
+const express = require('express'); // put quotes around express import
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const http = require('http');
@@ -16,16 +16,20 @@ const mongoDB = process.env.MONGO_URI;
 
 const app = express();
 
+
+mongoose.Promise = global.Promise; // moved this above connection
 mongoose.connect(mongoDB, { useMongoClient: true });
-mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
 
 app.use(bodyParser.json());
 
 // handler to save user
-app.get('/save', function(res, req) {
-  const user = new User(user);
+app.post('/save', function(req, res) { // change to app.post and set req before res
+
+// destructure sample requests from request body
+  const {firstName, email} = req.body;
+  const user = new User({firstName, email});
 
   user.save(function(err) {
     if (err) {
