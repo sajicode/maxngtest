@@ -15,7 +15,7 @@ Your task is to implement a function that would take the morse code as input and
 For example.
 
 ```js
-decodeMorse('·- -··- -· --- ·--.')
+decodeMorse('-- ·- -··- -· --- ·--.')
 //should return "MAX NOW"
 ```
 
